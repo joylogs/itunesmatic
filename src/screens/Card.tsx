@@ -1,5 +1,18 @@
-import { Text } from "react-native"
+import { Text, View } from "react-native"
+
+
+type CatProps =  {
+    name: string
+}
 
 
 
-// export default Cat;
+const Cat = (props: CatProps) => {
+    return (
+        <View>
+            <Text>Hi ..I am {props.name}..</Text>
+        </View>
+    );
+};
+
+export default Cat;
