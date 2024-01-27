@@ -1,13 +1,13 @@
 import { Text, View } from "react-native"
 
 
-type CatProps =  {
+type CardProps =  {
     name: string
 }
 
 
 
-const Cat = (props: CatProps) => {
+const CardView = (props: CardProps) => {
     return (
         <View>
             <Text>Hi ..I am {props.name}..</Text>
