@@ -3,6 +3,8 @@ import React from "react";
 import { FlatList, Text, View } from "react-native";
 
 
+const customData = require('../utils/mockdata.json');
+
 const AlbumList = () => {
 
     return (
