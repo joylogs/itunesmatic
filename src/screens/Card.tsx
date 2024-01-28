@@ -1,18 +1,28 @@
-import { Text, View } from "react-native"
+import { Image, StyleSheet, Text, View } from "react-native"
 
 
 type CardProps =  {
     name: string
 }
 
+const styles = StyleSheet.create({
+    container: {
+        backgroundColor: 'grey',
+        // flex: 1,
+    }
+});
 
-
-const CardView = (props: CardProps) => {
+const Card = (props: CardProps) => {
     return (
-        <View>
-            <Text>Hi ..I am {props.name}..</Text>
-        </View>
+        <View style = {styles.container}>
+            <Image 
+            source = {{uri: 'https://reactnative.dev/docs/assets/p_cat1.png'}}
+            style = {{width: 200, height: 200, alignSelf: "center"}}
+            />
+            <Text style = {{backgroundColor: "white"}}>{props.name}
+            </Text>
+        </View>        
     );
 };
+export default Card;
 
-export default Cat;

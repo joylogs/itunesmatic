@@ -24,7 +24,10 @@ import {
   LearnMoreLinks,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
-import Cat from './src/screens/Card';
+
+//CUSTOM VIEWS IMPORT ->
+import Card from './src/screens/Card';
+import AlbumList from './src/components/AlbumList';
 
 type SectionProps = PropsWithChildren<{
   title: string;
@@ -69,7 +72,11 @@ function App(): React.JSX.Element {
         barStyle={isDarkMode ? 'light-content' : 'dark-content'}
         backgroundColor={backgroundStyle.backgroundColor}
       />
-      <Cat name = "This"/>
+      <View>
+        <Card name = "Meow"></Card>
+        <AlbumList></AlbumList>
+      </View>
+
     </SafeAreaView>
   );
 }
