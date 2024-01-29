@@ -4,8 +4,9 @@ import { FlatList, Text, View } from "react-native";
 
 
 const customData = require('../utils/mockdata.json');
+// console.log("=>", customData.innerArray);
 
-const AlbumList = () => {
+const AlbumList = (customData) => {
 
     return (
         <View>
