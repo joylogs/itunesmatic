@@ -2,10 +2,7 @@
 import React from "react";
 import { FlatList, Text, View } from "react-native";
 
-
-
 // console.log("=>", customData.innerArray);
-
 
 const AlbumList = ({ customData: any }) => {
 

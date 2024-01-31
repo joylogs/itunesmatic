@@ -1,15 +1,14 @@
 
 
-const customData = require('../utils/mockdata.json');
+// const customData = require('../utils/mockdata.json');
 
-interface PassedOrders {
+// interface PassedOrders {
 
-}
+// }
 
 const jsonString = JSON.parse('../utils/mockdata.json')
 
-
-const orders: PassedOrders[] =
+const orders: any =
     [{
         "id": 1,
         "im_name": [
@@ -40,7 +39,7 @@ const orders: PassedOrders[] =
                 "currency": "USD"
             }
         },
-        "im:image": [
+        "im_image": [
             {
                 "label": "https://is2-ssl.mzstatic.com/image/thumb/Music20/v4/da/a3/4a/daa34a3a-cce7-c9f0-9c5e-267f63f8b3e3/075679909183.jpg/55x55bb.png",
                 "attributes": {
@@ -90,7 +89,7 @@ const orders: PassedOrders[] =
                 "currency": "USD"
             }
         },
-        "im:image": [
+        "im_image": [
             {
                 "label": "https://is2-ssl.mzstatic.com/image/thumb/Music20/v4/da/a3/4a/daa34a3a-cce7-c9f0-9c5e-267f63f8b3e3/075679909183.jpg/55x55bb.png",
                 "attributes": {
@@ -147,7 +146,7 @@ const orders: PassedOrders[] =
                 "currency": "USD"
             }
         },
-        "im:image": [
+        "im_image": [
             {
                 "label": "https://is2-ssl.mzstatic.com/image/thumb/Music20/v4/da/a3/4a/daa34a3a-cce7-c9f0-9c5e-267f63f8b3e3/075679909183.jpg/55x55bb.png",
                 "attributes": {
