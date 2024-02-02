@@ -1,14 +1,24 @@
 
 import React from "react";
-import { FlatList, Text, View } from "react-native";
+import { FlatList, SectionList, Text, View } from "react-native";
 
 // console.log("=>", customData.innerArray);
 
-const AlbumList = ({ customData: any }) => {
-
+const AlbumList = () => {
     return (
         <View>
-            <FlatList
+            <SectionList sections={[
+                {title: "D", data: ['Devin', 'David']}, 
+                {title: "E", data: ['Evin', 'Edward', 'Evan']}
+            ]}
+
+                renderItem={({item}) => <Text>{item}</Text>}
+                renderSectionHeader={({section}) => (<Text>{section.title}</Text>)}
+                keyExtractor={item => `basicListEntry-${item}`}
+                />
+            {/* </SectionList> */}
+
+            {/* <FlatList
                 data={
                     [
                         { key: "customData" },
@@ -18,7 +28,7 @@ const AlbumList = ({ customData: any }) => {
                 }
                 renderItem={({ item }) => <Text>{item.key}</Text>}
             >
-            </FlatList>
+            </FlatList> */}
         </View>
     );
 }
