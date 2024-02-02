@@ -15,20 +15,22 @@ const AlbumList = () => {
                 renderItem={({item}) => <Text>{item}</Text>}
                 renderSectionHeader={({section}) => (<Text>{section.title}</Text>)}
                 keyExtractor={item => `basicListEntry-${item}`}
-                />
-            {/* </SectionList> */}
+                >
+            </SectionList>
 
-            {/* <FlatList
-                data={
+            <FlatList
+                data=
+                {
                     [
                         { key: "customData" },
-                        { key: "customData" },
-                        { key: "customData" },
+                        { key: "customData2" },
+                        { key: "customData3" },
                     ]
                 }
-                renderItem={({ item }) => <Text>{item.key}</Text>}
+                renderItem={({item}) => <Text>{item.key}</Text>}
+                keyExtractor={item2 => `<basicFlatListEntry-1>item.k</basicFlatListEntry-1>`}
             >
-            </FlatList> */}
+            </FlatList>
         </View>
     );
 }
