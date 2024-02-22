@@ -4,6 +4,12 @@ import { FlatList, SectionList, Text, View } from "react-native";
 
 // console.log("=>", customData.innerArray);
 
+type Movie = {
+    id: string;
+    name: string;
+    releaseYear: string;
+};
+
 const AlbumList = () => {
     return (
         <View>
@@ -18,18 +24,9 @@ const AlbumList = () => {
                 >
             </SectionList>
 
-            <FlatList
-                data=
-                {
-                    [
-                        { key: "customData" },
-                        { key: "customData2" },
-                        { key: "customData3" },
-                    ]
-                }
-                renderItem={({item}) => <Text>{item.key}</Text>}
-                keyExtractor={item2 => `<basicFlatListEntry-1>item.k</basicFlatListEntry-1>`}
-            >
+            <FlatList data={[{key: "john"}, {key: "smith"}]} 
+            renderItem = {({item}) => <Text>{item.key}</Text>} > 
+
             </FlatList>
         </View>
     );

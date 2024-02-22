@@ -5,9 +5,10 @@
  * @format
  */
 
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import type {PropsWithChildren} from 'react';
 import {
+  FlatList,
   SafeAreaView,
   ScrollView,
   StatusBar,
@@ -32,6 +33,13 @@ import AlbumList from './src/components/AlbumList';
 type SectionProps = PropsWithChildren<{
   title: string;
 }>;
+
+type Movie = {
+  id: string;
+  title: string;
+  releaseYear: string;
+};
+
 
 function Section({children, title}: SectionProps): React.JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
@@ -60,24 +68,56 @@ function Section({children, title}: SectionProps): React.JSX.Element {
 }
 
 function App(): React.JSX.Element {
+
+  const [isLoading, setLoading] = useState(true);
+  const [data, setData] = useState<Movie[]>([]);
+
   const isDarkMode = useColorScheme() === 'dark';
 
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
 
+  const getAlbumList = async () => {
+    try {
+      const response = await fetch("https://reactnative.dev/movies.json");
+      const json = await response.json();
+      setData(json.movies);
+    }
+    catch(error) {
+      console.log(error);
+    }
+  }
+
+  useEffect(() => {
+    getAlbumList();
+  }, []);
+
   return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
-      />
-      <View>
-        <Card name = "Meow"></Card>
-        <AlbumList></AlbumList>
+    // <SafeAreaView style={backgroundStyle}>
+    //   <StatusBar
+    //     barStyle={isDarkMode ? 'light-content' : 'dark-content'}
+    //     backgroundColor={backgroundStyle.backgroundColor}
+    //   />
+      <View style = {{ flex: 1, padding: 24}}>
+        {/* <Card name = "Meow"></Card>
+        <AlbumList></AlbumList> */}
+
+
+        <FlatList 
+        data={data}
+        keyExtractor={({id}) => id} 
+        renderItem={({item}) => (
+          <Text>
+            {item.title}, {item.releaseYear}
+          </Text>
+        )}>
+
+        </FlatList>
+
       </View>
 
-    </SafeAreaView>
+    // </SafeAreaView>
   );
 }
 
