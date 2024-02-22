@@ -8,6 +8,7 @@
 import React, {useEffect, useState} from 'react';
 import type {PropsWithChildren} from 'react';
 import {
+  ActivityIndicator,
   FlatList,
   SafeAreaView,
   ScrollView,
@@ -87,6 +88,9 @@ function App(): React.JSX.Element {
     catch(error) {
       console.log(error);
     }
+    finally {
+      setLoading(false);
+    }
   }
 
   useEffect(() => {
@@ -102,8 +106,8 @@ function App(): React.JSX.Element {
       <View style = {{ flex: 1, padding: 24}}>
         {/* <Card name = "Meow"></Card>
         <AlbumList></AlbumList> */}
-
-
+      {isLoading ? (<ActivityIndicator></ActivityIndicator>) : 
+      (      
         <FlatList 
         data={data}
         keyExtractor={({id}) => id} 
@@ -114,6 +118,7 @@ function App(): React.JSX.Element {
         )}>
 
         </FlatList>
+      ) }
 
       </View>
 
