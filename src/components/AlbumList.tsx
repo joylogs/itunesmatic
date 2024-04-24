@@ -4,12 +4,6 @@ import { FlatList, SectionList, Text, View } from "react-native";
 
 // console.log("=>", customData.innerArray);
 
-type Movie = {
-    id: string;
-    name: string;
-    releaseYear: string;
-};
-
 const AlbumList = () => {
     return (
         <View>

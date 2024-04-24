@@ -74,6 +74,7 @@ function App(): React.JSX.Element {
   const [data, setData] = useState<Movie[]>([]);
 
   const isDarkMode = useColorScheme() === 'dark';
+  const numberOfCols = 3
 
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
@@ -98,12 +99,7 @@ function App(): React.JSX.Element {
   }, []);
 
   return (
-    // <SafeAreaView style={backgroundStyle}>
-    //   <StatusBar
-    //     barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-    //     backgroundColor={backgroundStyle.backgroundColor}
-    //   />
-      <View style = {{ flex: 1, padding: 24}}>
+      <View style = {styles.app}>
         {/* <Card name = "Meow"></Card>
         <AlbumList></AlbumList> */}
       {isLoading ? (<ActivityIndicator></ActivityIndicator>) : 
@@ -111,6 +107,7 @@ function App(): React.JSX.Element {
         <FlatList 
         data={data}
         keyExtractor={({id}) => id} 
+        numColumns={numberOfCols}
         renderItem={({item}) => (
           <Text>
             {item.title}, {item.releaseYear}
@@ -122,7 +119,6 @@ function App(): React.JSX.Element {
 
       </View>
 
-    // </SafeAreaView>
   );
 }
 
@@ -143,6 +139,12 @@ const styles = StyleSheet.create({
   highlight: {
     fontWeight: '700',
   },
+  app: {
+    flex: 4, // the number of columns you want to devide the screen into
+    marginHorizontal: "auto",
+    width: 400,
+    backgroundColor: "white"
+  }
 });
 
 export default App;
