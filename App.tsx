@@ -17,6 +17,7 @@ import {
   Text,
   useColorScheme,
   View,
+  Image
 } from 'react-native';
 
 import {
@@ -35,10 +36,11 @@ type SectionProps = PropsWithChildren<{
   title: string;
 }>;
 
-type Movie = {
+type Product = {
   id: string;
   title: string;
-  releaseYear: string;
+  price: string;
+  thumbnail: string;
 };
 
 
@@ -71,10 +73,10 @@ function Section({children, title}: SectionProps): React.JSX.Element {
 function App(): React.JSX.Element {
 
   const [isLoading, setLoading] = useState(true);
-  const [data, setData] = useState<Movie[]>([]);
+  const [data, setData] = useState<Product[]>([]);
 
   const isDarkMode = useColorScheme() === 'dark';
-  const numberOfCols = 3
+  // const numberOfCols = 2;
 
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
@@ -82,9 +84,11 @@ function App(): React.JSX.Element {
 
   const getAlbumList = async () => {
     try {
-      const response = await fetch("https://reactnative.dev/movies.json");
+      //https://dummyjson.com/products
+      //https://reactnative.dev/movies.json
+      const response = await fetch("https://dummyjson.com/products");
       const json = await response.json();
-      setData(json.movies);
+      setData(json.products);
     }
     catch(error) {
       console.log(error);
@@ -99,7 +103,7 @@ function App(): React.JSX.Element {
   }, []);
 
   return (
-      <View style = {styles.app}>
+      <View>
         {/* <Card name = "Meow"></Card>
         <AlbumList></AlbumList> */}
       {isLoading ? (<ActivityIndicator></ActivityIndicator>) : 
@@ -107,11 +111,13 @@ function App(): React.JSX.Element {
         <FlatList 
         data={data}
         keyExtractor={({id}) => id} 
-        numColumns={numberOfCols}
-        renderItem={({item}) => (
-          <Text>
-            {item.title}, {item.releaseYear}
-          </Text>
+        // numColumns={numberOfCols}
+        renderItem={({item, index}) => (
+          <View style={styles.viewpic}>            
+            <Image style={styles.image} source={{uri:item.thumbnail}}/>
+            <Text>{item.title}</Text>
+            
+          </View>
         )}>
 
         </FlatList>
@@ -139,11 +145,28 @@ const styles = StyleSheet.create({
   highlight: {
     fontWeight: '700',
   },
-  app: {
-    flex: 4, // the number of columns you want to devide the screen into
-    marginHorizontal: "auto",
-    width: 400,
-    backgroundColor: "white"
+  viewpic: {
+    flex: 1,
+    flexWrap:'wrap',
+    justifyContent: 'center',
+    flexDirection: 'row',
+     backgroundColor: '#f5f5f5',
+  },
+  image: {
+    justifyContent: 'center',
+    height: 115,
+    width: 115,
+    margin:6,
+    backgroundColor: 'red',
+  },
+  // app: {
+  //   flex: 4, // the number of columns you want to devide the screen into
+  //   marginHorizontal: "auto",
+  //   width: 400,
+  //   backgroundColor: "white"
+  // },
+  row: {
+    flexDirection: "row"
   }
 });
 
